@@ -1,21 +1,71 @@
 package com.example.demo.entity;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author sxp
  * @create 2019-02-02 17:31
  **/
-public class PageView {
+@Document(collection = "PageView")
+public class PageView implements Serializable {
+
+    private static final long serialVersionUID = -60781486773939584L;
+
+    @Id
+    private ObjectId eventId;
+    private String eventName;
+    private String clientId;
     private String pageUrl;
     private String userIp;
-    private String userName;
+    private int userId;
+    @DateTimeFormat(pattern = "yy-MM-dd HH-mm-ss E")
     private Date time;
+    private Date endTime;
 
-    public PageView(String pageUrl, String userIp, String userName, Date time) {
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public ObjectId getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(ObjectId eventId) {
+        this.eventId = eventId;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+
+
+    public PageView(String pageUrl, String userIp, int userId, Date time) {
         this.pageUrl = pageUrl;
         this.userIp = userIp;
-        this.userName = userName;
+        this.userId = userId;
         this.time = time;
     }
 
@@ -27,7 +77,7 @@ public class PageView {
         return "PageView{" +
                 "pageUrl='" + pageUrl + '\'' +
                 ", userIp='" + userIp + '\'' +
-                ", userName='" + userName + '\'' +
+                ", userId='" + userId + '\'' +
                 ", time=" + time +
                 '}';
     }
@@ -48,12 +98,12 @@ public class PageView {
         this.userIp = userIp;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getTime() {

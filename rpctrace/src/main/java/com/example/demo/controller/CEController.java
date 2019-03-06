@@ -1,14 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.CustomEvent;
-import com.example.demo.entity.Event;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import org.bson.BsonDocument;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author sxp
- * @create 2019-02-15 22:21
+ * @create 2019-02-25 20:21
  **/
-@Controller
-public class CustomEventController {
+//@Controller
+public class CEController {
     private static final Logger logger = LoggerFactory.getLogger(CustomEventController.class);
 
     @Autowired
@@ -37,14 +30,13 @@ public class CustomEventController {
     MongoTemplate mongoTemplate;
 
     @ResponseBody
-    @PostMapping("/customEvent")
-    public String customEvent(@RequestBody List<CustomEvent> customEvents) throws IOException {
-        logger.info(customEvents.toString());
-        for (CustomEvent customEvent : customEvents) {
-            customEvent.setEventName("CustomEvent");
-            mongoTemplate.save(customEvent,"CustomEvent");
-//            Document doc = Document.parse(mapper.writeValueAsString(customEvent));
-        }
+    @PostMapping("/leave")
+    public String customEvent(@RequestBody String event) throws IOException {
+        //CustomEvent customEvent = mapper.readValue(s,CustomEvent.class);
+        logger.info(event);
+        Document doc = Document.parse(event);
+        //mongoTemplate.save(doc,"CustomEvent");
+
         return "";
     }
 }

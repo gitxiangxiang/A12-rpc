@@ -8,7 +8,43 @@
 		<meta name="author" content="">
 		<!-- 埋点必备-->
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="js/demo.js"></script>
+		<script>
+            (function () {
+                window.rpc = window.rpc ||[];
+                window.rpc.methods = "init identify trace getKey setSuperProperty setUserProperties".split(" ");
+                window.rpc.factory = function(b) {
+                    return function() {
+                        var a = Array.prototype.slice.call(arguments);
+                        a.unshift(b);
+                        window.rpc.push(a);
+                        return window.rpc;
+                    }
+                };
+                for (var i = 0; i < window.rpc.methods.length; i++) {
+                    var key = window.rpc.methods[i];
+                    window.rpc[key] = window.rpc.factory(key);
+                }
+                window.rpc.load = function(appKey, customConfig) {
+                    if (!document.getElementById("rpc-js")) {
+                        var a = document.createElement("script");
+                        var verDate = new Date();
+                        var verStr = verDate.getFullYear().toString() + verDate.getMonth().toString() + verDate.getDate().toString();
+                        a.type = "text/javascript";
+                        a.id = "rpc-js";
+                        a.async = !0;
+                        a.src = "http://localhost:8080/js/demo.js";
+                        a.onerror = function() {};
+                        var c = document.getElementsByTagName("script")[0];
+                        c.parentNode.insertBefore(a, c);
+                        window.rpc.init(appKey, customConfig);
+                    }
+                };
+                var customConfig = {
+                    autoTrace:false
+                }
+                window.rpc.load("123456789",customConfig);
+            })();
+		</script>
 
 		<title>Dashboard Template for Bootstrap</title>
 		<!-- Bootstrap core CSS -->
