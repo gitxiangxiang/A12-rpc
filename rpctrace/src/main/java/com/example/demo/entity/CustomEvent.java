@@ -42,7 +42,7 @@ public class CustomEvent implements Serializable{
     private Date time;
 
     public ObjectId getEventId() {
-         return eventId;
+        return eventId;
     }
 
     public void setEventId(ObjectId eventId) {

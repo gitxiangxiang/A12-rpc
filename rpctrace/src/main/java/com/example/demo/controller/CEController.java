@@ -19,7 +19,7 @@ import java.util.List;
  * @author sxp
  * @create 2019-02-25 20:21
  **/
-//@Controller
+@Controller
 public class CEController {
     private static final Logger logger = LoggerFactory.getLogger(CustomEventController.class);
 

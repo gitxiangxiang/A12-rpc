@@ -26,15 +26,6 @@ public class PageView implements Serializable {
     private int userId;
     @DateTimeFormat(pattern = "yy-MM-dd HH-mm-ss E")
     private Date time;
-    private Date endTime;
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
 
     public ObjectId getEventId() {
         return eventId;

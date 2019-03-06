@@ -4,6 +4,7 @@ import com.example.demo.entity.RegisterEvent;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,4 +14,5 @@ import java.util.List;
 public interface RegisterEventDao extends MongoRepository<RegisterEvent,ObjectId> {
     @Override
     List<RegisterEvent> findAll();
+    int countRegisterEventByTimeBetween(Date date1,Date date2);
 }

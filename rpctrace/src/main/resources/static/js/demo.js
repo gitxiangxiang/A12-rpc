@@ -41,8 +41,6 @@ var DEFAULT_CONFIG = {
             window.rpc.getKey = getKey;
             window.rpc.trace = trace;
             window.rpc.identify = identify;
-            window.rpc.register = register;
-            window.rpc.login = login;
             len = window.rpc.length;
             for (var i = 0; i < len; i++) {
                 var method = eval(window.rpc[0][0]);
@@ -201,22 +199,7 @@ window.onbeforeunload = function() {
 function trace(eventName) {
     sent([new CustomEvent(arguments[0][0],arguments[0][1])],"/customEvent");
 }
-function Register(time) {
-    this.clientId = window.rpc.appKey;
-    this.userId = window.rpc.userId;
-    this.time = time;
-}
-function register() {
-    sent(new Register(new Date()));
-}
-function Login(time) {
-    this.clientId = window.rpc.appKey;
-    this.userId = window.rpc.userId;
-    this.time = time;
-}
-function login() {
-    sent(new Login(new Date()));
-}
+
 /*
  * 获取页面的URL
  */

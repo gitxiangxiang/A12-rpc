@@ -4,7 +4,6 @@ import com.example.demo.entity.PageView;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +13,4 @@ import java.util.List;
 public interface PageViewDao extends MongoRepository<PageView,ObjectId> {
     @Override
     List<PageView> findAll();
-    PageView findFirstByTimeBeforeAndUserIdIsAndEndTimeIsNull(Date date,int userId);
-
 }
